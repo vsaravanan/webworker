@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+	
+      <script type="text/javascript">
+         var aa = document.getElementsByTagName("eventsource");
+         aa[0].addEventListener("server-time", eventHandler, false);
+			
+         function eventHandler(event)
+         {
+            //Alert time sent by the server
+            console.log(event);
+            document.querySelector('#ticker').innerHTML = event.data;
+         }
+
+         // var source = new EventSource("./ticker.cgi");
+         // source.onmessage = function(event) {
+         //     document.getElementById('#ticker').innerHTML += event.data + "<br>";
+         // };         
+      </script>
+		
+   </head>
+   <body>
+	
+      <div id="sse">
+         <eventsource src="./ticker.cgi" />
+      </div>
+		
+      <div id="ticker" name="ticker">
+         [TIME]
+      </div>
+		
+   </body>
+</html>
